@@ -8,17 +8,27 @@ import './App.css'
 
 function App() {
   const [contacts, contactHandler] = useState(initialContacts)
-  function contactAdd (newContact) {()=> {
+  const [filter, setFilter] = useState('');
+  const contactAdd = (newContact) => {
     contactHandler ((pervContacts) => {
       return [...pervContacts, newContact]
-    })
-  }}
+  })
+  }
+
+  const deleteContact = (contactId) => {
+    contactHandler((prevContacts) => {
+      return prevContacts.filter((contact) => contact.id !== contactId);
+    });
+  };
+  const visibleContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+  );
   return (
     <>
       <h1>Phonebook</h1>
       <ContactForm contactAdd={contactAdd}/>
-      <SearchBox />
-      <ContactList contacts={contacts}/>
+      <SearchBox value={filter} filterHandler={setFilter} />
+      <ContactList contacts={visibleContacts} deleteHandler={deleteContact}/>
     </>
   )
 }

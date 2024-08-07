@@ -1,0 +1,20 @@
+.searchBox {
+   color: black;
+}
+.searchBox  label {
+   display: block;
+   margin-bottom: 5px;
+   color: #666;
+ }
+ 
+ .searchBox  input[type="text"],
+ .searchBox  input[type="number"] {
+   width: calc(100% - 80px);
+   padding: 8px;
+   margin-bottom: 10px;
+   border: 1px solid #ccc;
+   border-radius: 4px;
+   font-size: 14px;
+ }
+ 
+ 
