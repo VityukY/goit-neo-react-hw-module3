@@ -7,7 +7,7 @@ import * as yup from 'yup';
 export default function ContactForm({ contactAdd }) {
   const contactSchema = yup.object().shape({
     name: yup.string().required("Required").min(3, "Too short").max(50, "Too long"),
-    number: yup.string().required("Required").min(3, "Too short").max(15, "Too long"), // Phone numbers are strings
+    number: yup.string("need number").required("Required").min(3, "Too short").max(15, "Too long"), // Phone numbers are strings
   });
 
   const userHandler = (values, actions) => {
@@ -33,13 +33,13 @@ export default function ContactForm({ contactAdd }) {
           Name:
         </label>
         <Field type="text" name="name" id={nameFieldId} />
-        <ErrorMessage name="name" component="div" className={styles.error} />
+        <ErrorMessage name="name" component="span" className={styles.error} />
 
         <label htmlFor={numberFieldId}>
           Number:
         </label>
-        <Field type="text" name="number" id={numberFieldId} />
-        <ErrorMessage name="number" component="div" className={styles.error} />
+        <Field type="number" name="number" id={numberFieldId} />
+        <ErrorMessage name="number" component="span" className={styles.error} />
 
         <button className={styles.submitButton} type="submit">
           New Contact
